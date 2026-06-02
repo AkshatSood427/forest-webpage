@@ -1,0 +1,30 @@
+/* ============================================
+   FOREST WEBSITE — Main Stylesheet
+   ============================================ */
+
+/* --- CSS Variables (Theme) --- */
+:root {
+  --color-bg: #ffffff;
+  --color-text: #111111;
+  --color-accent: #000000;
+
+  --font-display: sans-serif;
+  --font-body: sans-serif;
+
+  --section-padding: 6rem 2rem;
+  --max-width: 1200px;
+}
+
+/* --- Reset --- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  line-height: 1.6;
+}
