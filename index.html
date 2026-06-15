@@ -3,12 +3,190 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lab Website</title>
+  <title>FOREST</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
+  <div class="section-bg"></div>
+  <!-- ===== COVER ===== -->
+  <section id="cover">
+    <div class="cover-bg"></div>
+    <div class="cover-content">
+       <img src="images/lab_logo.png" alt="Lab Logo" class="cover-logo" />
+       <p class="cover-acronym">FOREST Lab</p>
+       <h2 class="cover-title">Forest Ecosystem Services and Traditional Knowledge Lab</h2>
+       <p class="cover-tagline">Tradition. Science. Sustainability.</p>
+    </div>
+    <div class="scroll-hint">↓ scroll</div>
+  </section>
 
-  <!-- Sections will go here -->
+  <!-- ===== NAVBAR (revealed on scroll) ===== -->
+  <nav id="navbar">
+    <span class="nav-logo">FOREST</span>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#research">Research</a></li>
+      <li><a href="#team">Team</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- ===== CONTENT SECTIONS ===== -->
+  <main id="main-content">
+    <section id="about">
+      <div class="about-container">
+        <div class="about-text">
+          <p class="about-label">What we are...</p>
+          <p class="about-body">We are a group of researchers, explorers, and storytellers brought together by a shared fascination with forests, wilderness, and the people who live alongside them. We are united by a curiosity about how forest ecosystems function and how they continue to support communities, cultures, and livelihoods around the world.</p>
+          <p class="about-body">At our core, we are a collaborative community of scholars, learners, and mentors who value diverse perspectives and open exchange of ideas. We deeply respect the knowledge, experiences, and stewardship of communities that have cared for these landscapes for generations. By embracing both scientific inquiry and traditional wisdom, we seek to foster a richer understanding of the connections between people, forests, and sustainable futures.</p>
+          <a href="#research" class="about-btn">Our Research →</a>
+        </div>
+        <div class="slideshow-panel"></div>
+      </div>
+      <div class="scroll-hint about-scroll-hint">↓ scroll</div>
+    </section>
+
+    <section id="research">
+      <div class="research-container">
+        <div class="research-text">
+          <p class="about-label">What We Do...</p>
+          <p class="about-body">We study forests from multiple perspectives—exploring the relationships between plants, people, and the environments they share. Through field research, collaboration, and scientific inquiry, we seek to better understand and sustain the connections between nature and society. Our work spans ethnobotany, plant ecology and phenology, and ecosystem services, helping to inform conservation and sustainable resource management.</p>
+
+          <div class="theme-list">
+            <div class="theme-item">
+              <span class="theme-number">01</span>
+              <div class="theme-info">
+                <h3 class="theme-name">Ethnobotany</h3>
+                <p class="theme-desc">Our ethnobotanical research explores the rich relationships between Himalayan communities and their surrounding plant diversity, documenting traditional knowledge, cultural practices, and the sustainable use of plant resources across diverse mountain landscapes.</p>
+              </div>
+            </div>
+            <div class="theme-item">
+              <span class="theme-number">02</span>
+              <div class="theme-info">
+                <h3 class="theme-name">Plant Ecology & Phenology</h3>
+                <p class="theme-desc">Our research in plant ecology and phenology examines how Himalayan plant communities respond to seasonal and environmental changes, providing insights into ecosystem dynamics, biodiversity patterns, and the impacts of climate change.</p>
+              </div>
+            </div>
+            <div class="theme-item">
+              <span class="theme-number">03</span>
+              <div class="theme-info">
+                <h3 class="theme-name">Ecosystem Services</h3>
+                <p class="theme-desc">Our ecosystem services research investigates the benefits that Himalayan ecosystems provide to people, including water regulation, carbon storage, biodiversity support, and cultural values, helping inform sustainable conservation and resource management strategies.</p>
+              </div>
+            </div>
+          </div>
+
+          <a href="#team" class="about-btn">Meet our researchers →</a>
+        </div>
+
+        <div class="slideshow-panel"></div>
+      </div>
+      <div class="scroll-hint about-scroll-hint">↓ scroll</div>
+    </section>
+
+    <!-- ===== TEAM ===== -->
+    <section id="team">
+      <div class="team-container">
+
+        <!-- LEFT: Cards -->
+        <div class="team-left">
+
+          <div class="team-header">
+            <p class="about-label">Meet the Team</p>
+          </div>
+
+          <!-- Incharge -->
+          <div class="team-incharge">
+            <div class="member-card incharge-card">
+              <div class="member-photo">
+                <img src="images/team/scientist.jpg" alt="Lab Incharge" />
+              </div>
+              <div class="member-info">
+                <p class="member-name">Dr. Sanjay Kumar Uniyal</p>
+                <p class="member-role">Chief Scientist CSIR-IHBT</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Members Grid -->
+          <div class="team-grid"></div>
+
+        </div>
+
+        <!-- RIGHT: Group card -->
+        <div class="team-right">
+          <div class="group-card">
+            <div class="group-photo">
+              <img src="images/group.JPG" alt="Lab Group Photo" />
+            </div>
+            <div class="group-text">
+              <p class="about-label">Our Team</p>
+              <p class="about-body">Our strength lies in the diversity of perspectives, expertise, and experiences brought together within the lab. Guided by a culture of collaboration, curiosity, and mutual learning, we believe that meaningful scientific discoveries emerge when researchers work across disciplines, share knowledge openly, and engage with both scientific and traditional knowledge systems. Together, we strive to foster an inclusive and supportive environment that nurtures innovation, critical thinking, and a shared commitment to sustainable futures.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="scroll-hint about-scroll-hint">↓ scroll</div>
+    </section>
+
+    <!-- ===== CONTACT ===== -->
+    <section id="contact">
+      <div class="contact-container">
+
+        <div class="contact-header">
+          <p class="about-label">Contact</p>
+          <h2 class="contact-title">Get in Touch</h2>
+          <p class="contact-subtitle">We welcome collaborations, inquiries, and prospective researchers.</p>
+        </div>
+
+        <div class="contact-body">
+
+          <div class="contact-block">
+            <p class="contact-block-label">Location</p>
+            <p class="contact-block-text">Room - 201, N.K. Jain Block</p>
+            <p class="contact-block-text">CSIR - Institute of Himalayan Bioresource Technology</p>
+            <p class="contact-block-text">Palampur, Distt - Kangra, Himachal Pradesh, Pin -176061</p>
+          </div>
+
+          <div class="contact-block">
+            <p class="contact-block-label">Email</p>
+            <a href="mailto:LAB_EMAIL" class="contact-email">abcdefg@gmail.com</a>
+          </div>
+
+          <div class="contact-block">
+            <p class="contact-block-label">Join Us</p>
+            <p class="contact-block-text">Join a vibrant research environment where curiosity, collaboration, and innovation thrive. We welcome prospective Ph.D. scholars, interns, and trainees eager to contribute to cutting-edge research on forest ecosystems, ecosystem services, and traditional knowledge while developing valuable research skills and experience.</p>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="contact-footer">
+        <p>FOREST - Forest Ecosystem Services and Traditional Knowledge Lab</p>
+      </div>
+    </section>
+  </main>
+  
+  <!-- ===== MEMBER OVERLAY ===== -->
+  <div id="member-overlay" class="overlay">
+    <div class="member-overlay-card">
+      <button class="overlay-close" id="member-overlay-close">✕</button>
+      <div class="member-overlay-photo">
+        <img id="overlay-member-photo" src="" alt="" />
+      </div>
+      <div class="member-overlay-info">
+        <p class="overlay-number" id="overlay-member-role">ROLE</p>
+        <h2 class="overlay-acronym" id="overlay-member-name">NAME</h2>
+        <div class="overlay-divider"></div>
+        <p class="overlay-intro" id="overlay-member-bio">Bio text.</p>
+      </div>
+    </div>
+  </div>
 
   <script src="js/main.js"></script>
 </body>
