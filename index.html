@@ -17,7 +17,7 @@
     <div class="cover-content">
        <img src="images/lab_logo.png" alt="Lab Logo" class="cover-logo" />
        <p class="cover-acronym">FOREST Lab</p>
-       <h2 class="cover-title">Forest Ecosystem Services and Traditional Knowledge Lab</h2>
+       <h2 class="cover-title">Forest, Ecosystem Services and Traditional Knowledge Lab</h2>
        <p class="cover-tagline">Tradition. Science. Sustainability.</p>
     </div>
     <div class="scroll-hint">↓ scroll</div>
@@ -133,12 +133,24 @@
       <div class="scroll-hint about-scroll-hint">↓ scroll</div>
     </section>
 
+    <!-- ===== PUBLICATIONS ===== -->
+    <section id="publications">
+      <div class="pub-container">
+        <p class="about-label">Our Work In Print...</p>
+        <p class="about-body">Explore our collection of research publications highlighting scientific discoveries, innovative methodologies, and impactful contributions across diverse disciplines, reflecting our commitment to advancing knowledge and addressing real-world challenges.</p>
+
+        <div class="pub-list" id="pub-list"></div>
+
+        <div class="pub-pagination" id="pub-pagination"></div>
+      </div>
+      <div class="scroll-hint about-scroll-hint">↓ scroll</div>
+    </section>
+
     <!-- ===== CONTACT ===== -->
     <section id="contact">
       <div class="contact-container">
 
         <div class="contact-header">
-          <p class="about-label">Contact</p>
           <h2 class="contact-title">Get in Touch</h2>
           <p class="contact-subtitle">We welcome collaborations, inquiries, and prospective researchers.</p>
         </div>
@@ -167,7 +179,7 @@
       </div>
 
       <div class="contact-footer">
-        <p>FOREST - Forest Ecosystem Services and Traditional Knowledge Lab</p>
+        <p>FOREST - Forest, Ecosystem Services and Traditional Knowledge Lab</p>
       </div>
     </section>
   </main>
@@ -176,15 +188,41 @@
   <div id="member-overlay" class="overlay">
     <div class="member-overlay-card">
       <button class="overlay-close" id="member-overlay-close">✕</button>
-      <div class="member-overlay-photo">
-        <img id="overlay-member-photo" src="" alt="" />
+
+      <div class="member-overlay-top">
+        <div class="member-overlay-photo">
+          <img id="overlay-member-photo" src="" alt="" />
+        </div>
+        <div class="member-overlay-info">
+          <p class="overlay-number" id="overlay-member-role">ROLE</p>
+          <h2 class="overlay-acronym" id="overlay-member-name">NAME</h2>
+          <p class="overlay-intro" id="overlay-member-bio">Bio text.</p>
+        </div>
       </div>
-      <div class="member-overlay-info">
-        <p class="overlay-number" id="overlay-member-role">ROLE</p>
-        <h2 class="overlay-acronym" id="overlay-member-name">NAME</h2>
-        <div class="overlay-divider"></div>
-        <p class="overlay-intro" id="overlay-member-bio">Bio text.</p>
+
+      <div class="overlay-divider"></div>
+
+      <div class="member-overlay-details">
+        <div class="detail-block">
+          <p class="detail-label">Background</p>
+          <p class="detail-text" id="overlay-member-background">Background text.</p>
+        </div>
+        <div class="detail-block">
+          <p class="detail-label">Current Work</p>
+          <p class="detail-text" id="overlay-member-current">Current work text.</p>
+        </div>
+        <div class="detail-block">
+          <p class="detail-label">Fun Fact</p>
+          <p class="detail-text" id="overlay-member-funfact">Fun fact text.</p>
+        </div>
       </div>
+
+      <div class="member-overlay-photos">
+        <img id="overlay-field-1" src="" alt="Field photo 1" />
+        <img id="overlay-field-2" src="" alt="Field photo 2" />
+        <img id="overlay-field-3" src="" alt="Field photo 3" />
+      </div>
+
     </div>
   </div>
 
