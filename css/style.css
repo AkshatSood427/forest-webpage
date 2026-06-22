@@ -267,7 +267,7 @@ body {
 
 .about-scroll-hint {
   position: absolute;
-  bottom: 2rem;
+  bottom: 1rem;
   left: 50%;
   transform: translateX(-50%);
   z-index: 2;
@@ -386,12 +386,13 @@ body {
   font-weight: 700;
   color: var(--color-text);
   margin-bottom: 0.25rem;
+  
 }
 
 .theme-desc {
-  font-size: 0.85rem;
+  font-size: 1rem;
   font-weight: 300;
-  color: var(--color-muted);
+  color: white;
   line-height: 1.6;
 }
 
@@ -713,7 +714,7 @@ body {
   color: var(--color-text);
   line-height: 1.1;
   margin-bottom: 0.75rem;
-  margin-top: -5rem;
+  margin-top: 0rem;
 }
 
 .contact-subtitle {
@@ -786,7 +787,8 @@ body {
   position: relative;
   height: 100vh;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
+  padding-top: 18vh;
   z-index: 10;
 }
 
@@ -794,7 +796,8 @@ body {
   width: 75%;
   margin: 0 auto;
   padding: 2rem;
-  margin-top: -3rem;
+  margin-top: -12rem;
+  position: relative;
 }
 
 .pub-list {
@@ -912,4 +915,246 @@ body {
 .pub-page-nav:disabled {
   opacity: 0.3;
   cursor: not-allowed;
+}
+
+.pub-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  position: relative;
+}
+
+.pub-filter-btn:hover {
+  background: var(--color-accent);
+  color: #0a0f0a;
+}
+
+.pub-search-input {
+  flex: 1;
+  background: rgba(10, 15, 10, 0.5);
+  border: 1px solid rgba(200, 230, 160, 0.2);
+  border-radius: 6px;
+  padding: 0.5rem 0.75rem;
+  color: var(--color-text);
+  font-size: 0.82rem;
+  font-family: var(--font-body);
+}
+
+.pub-search-input::placeholder {
+  color: var(--color-muted);
+}
+
+.pub-year-select {
+  background: rgba(10, 15, 10, 0.5);
+  border: 1px solid rgba(200, 230, 160, 0.2);
+  border-radius: 6px;
+  padding: 0.5rem 0.75rem;
+  color: var(--color-text);
+  font-size: 0.82rem;
+  font-family: var(--font-body);
+}
+
+.pub-clear-btn {
+  background: none;
+  border: none;
+  color: var(--color-muted);
+  font-size: 0.78rem;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.pub-clear-btn:hover {
+  color: var(--color-accent);
+}
+
+.pub-empty {
+  color: var(--color-muted);
+  font-size: 0.9rem;
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.pub-filter-bar {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: -1rem;
+  margin-bottom: 0.5rem;
+  align-items: center;
+}
+
+/* ── BEYOND SCIENCE ── */
+#beyond {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  align-items: flex-start;
+  padding-top: 12vh;
+  z-index: 10;
+  overflow: hidden;
+}
+
+.beyond-container {
+  width: 85%;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.beyond-grid {
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 140px;
+  gap: 0.6rem;
+}
+
+.beyond-card {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: default;
+}
+
+.beyond-card:nth-child(3n+1) {
+  grid-row: span 2;
+}
+
+.beyond-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.beyond-caption {
+  position: absolute;
+  inset: auto 0 0 0;
+  padding: 0.5rem 0.7rem;
+  background: linear-gradient(to top, rgba(5, 10, 5, 0.85), transparent);
+  color: var(--color-text);
+  font-size: 0.72rem;
+  font-weight: 300;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.beyond-card:hover .beyond-caption {
+  opacity: 1;
+}
+
+.beyond-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.beyond-label {
+  font-size: 2rem;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: 0rem;
+  margin-top: -3rem;
+}
+
+.beyond-intro {
+  font-size: 1rem;
+  font-weight: 300;
+  color: #b8c9b8;
+  line-height: 1.8;
+}
+
+/* ── ALUMNI STRIP ── */
+.alumni-section {
+  margin-top: 2rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid rgba(200, 230, 160, 0.15);
+}
+
+.alumni-track-wrapper {
+  overflow: hidden;
+  margin-top: 0.75rem;
+  position: relative;
+}
+
+.alumni-track {
+  display: flex;
+  gap: 1.25rem;
+  width: max-content;
+  animation: scrollAlumni 20s linear infinite;
+}
+
+.alumni-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes scrollAlumni {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.alumni-card {
+  background: rgba(10, 15, 10, 0.45);
+  border: 1px solid rgba(200, 230, 160, 0.12);
+  border-radius: 10px;
+  overflow: hidden;
+  width: 480px;
+  flex-shrink: 0;
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  transition: border-color 0.2s;
+  height: 170px;
+}
+
+.alumni-card:hover {
+  border-color: rgba(200, 230, 160, 0.35);
+}
+
+.alumni-photo {
+  width: 100px;
+  aspect-ratio: 1/1;
+  overflow: hidden;
+  flex-shrink: 0;
+  height: 100%;
+}
+
+.alumni-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+
+.alumni-info {
+  padding: 0.75rem 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.alumni-name {
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: 0.2rem;
+}
+
+.alumni-role {
+  font-size: 0.72rem;
+  font-weight: 300;
+  color: var(--color-accent);
+  margin-bottom: 0.4rem;
+  line-height: 1.4;
+}
+
+.alumni-quote {
+  font-size: 0.7rem;
+  font-weight: 300;
+  color: var(--color-muted);
+  line-height: 1.5;
+  font-style: italic;
 }

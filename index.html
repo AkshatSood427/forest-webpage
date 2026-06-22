@@ -136,12 +136,38 @@
     <!-- ===== PUBLICATIONS ===== -->
     <section id="publications">
       <div class="pub-container">
-        <p class="about-label">Our Work In Print...</p>
-        <p class="about-body">Explore our collection of research publications highlighting scientific discoveries, innovative methodologies, and impactful contributions across diverse disciplines, reflecting our commitment to advancing knowledge and addressing real-world challenges.</p>
+
+        <div class="pub-header">
+          <div>
+            <p class="about-label">Our Work In Print...</p>
+            <p class="about-body">Explore our collection of research publications highlighting scientific discoveries, innovative methodologies, and impactful contributions across diverse disciplines, reflecting our commitment to advancing knowledge and addressing real-world challenges.</p>
+          </div>
+        </div>
+
+        <div class="pub-filter-bar">
+          <input type="text" id="pub-search" class="pub-search-input" placeholder="Search by title or author..." />
+          <select id="pub-year-filter" class="pub-year-select">
+            <option value="">All years</option>
+          </select>
+          <button class="pub-clear-btn" id="pub-clear-filters">Clear</button>
+        </div>
 
         <div class="pub-list" id="pub-list"></div>
 
         <div class="pub-pagination" id="pub-pagination"></div>
+      </div>
+      <div class="scroll-hint about-scroll-hint">↓ scroll</div>
+    </section>
+
+    <!-- ===== BEYOND SCIENCE ===== -->
+    <section id="beyond">
+      <div class="beyond-container">
+        <p class="beyond-label">Beyond Science</p>
+        <p class="beyond-intro">Beyond science, our lab thrives on collaboration, friendship, and shared experiences. From celebrations and field trips to team activities, these moments strengthen connections and make our research journey more enjoyable.</p>
+
+        <div class="beyond-grid" id="beyond-grid"></div>
+
+        <div class="beyond-pagination" id="beyond-pagination"></div>
       </div>
       <div class="scroll-hint about-scroll-hint">↓ scroll</div>
     </section>
@@ -169,9 +195,11 @@
             <a href="mailto:LAB_EMAIL" class="contact-email">abcdefg@gmail.com</a>
           </div>
 
-          <div class="contact-block">
-            <p class="contact-block-label">Join Us</p>
-            <p class="contact-block-text">Join a vibrant research environment where curiosity, collaboration, and innovation thrive. We welcome prospective Ph.D. scholars, interns, and trainees eager to contribute to cutting-edge research on forest ecosystems, ecosystem services, and traditional knowledge while developing valuable research skills and experience.</p>
+          <div class="alumni-section">
+            <p class="contact-block-label">Our Alumni</p>
+            <div class="alumni-track-wrapper">
+              <div class="alumni-track" id="alumni-track"></div>
+            </div>
           </div>
 
         </div>
@@ -182,6 +210,7 @@
         <p>FOREST - Forest, Ecosystem Services and Traditional Knowledge Lab</p>
       </div>
     </section>
+
   </main>
   
   <!-- ===== MEMBER OVERLAY ===== -->

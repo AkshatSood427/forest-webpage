@@ -56,9 +56,9 @@ const scientistData = {
   background: 'Born and brought up in Dehradun, I did my post-graduation in Botany. Thereafter, I worked for my PhD on the High altitude Forests of Bhagirathi Valley, Uttarkashi, elucidating their structural and functional characteristics along with use patterns.',
   currentWork: 'Subsequently, I moved to CSIR-IHBT as a scientist; here, my work focuses on exploring biodiversity, sampling vegetation, recording traditional knowledge, and maintaining databases',
   funFact: 'My hobbies include wandering, travelling, and camping; music and food attract me.',
-  fieldPhoto1: 'images/team/member1a.jpg',
-  fieldPhoto2: 'images/team/member1b.jpg',
-  fieldPhoto3: 'images/team/member1c.jpg'
+  fieldPhoto1: 'images/team/scientista.jpg',
+  fieldPhoto2: 'images/team/scientistb.jpg',
+  fieldPhoto3: 'images/team/scientistc.jpg'
 }
 
 let memberData = [scientistData];
@@ -214,13 +214,13 @@ const navbar = document.getElementById('navbar');
 const coverBg = document.querySelector('.cover-bg');
 
 // ── SMOOTH SNAP SCROLL ──
-const sections = Array.from(document.querySelectorAll('#cover, #about, #research, #team, #publications, #contact'));
+const sections = Array.from(document.querySelectorAll('#cover, #about, #research, #team, #publications, #beyond, #contact'));
 let isScrolling = false;
 
 window.addEventListener('wheel', (e) => {
-  if (e.target.closest('.team-grid') || e.target.closest('.member-overlay-card') || e.target.closest('.pub-pagination')) {
-    return;
-  }
+  if (e.target.closest('.team-grid') || e.target.closest('.member-overlay-card') || e.target.closest('.pub-pagination') || e.target.closest('.beyond-pagination')) {
+  return;
+}
 
   e.preventDefault();
   console.log('wheel fired, isScrolling:', isScrolling, 'sections found:', sections.length);
@@ -274,16 +274,53 @@ document.querySelector('.team-grid').addEventListener('wheel', (e) => {
 const PUBLICATIONS_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSKibTTUSsWczy9nZ7RmtSXFHMb6h1AjQOgM8gTgs603dxCLNP7Azsd-AZ5pddK5H0TYegCeGqBNPxK/pub?gid=56861099&single=true&output=csv';
 const PUBS_PER_PAGE = 5;
 let publicationsData = [];
+let filteredPubs = [];
 let currentPubPage = 1;
 
 fetch(`${PUBLICATIONS_CSV_URL}&t=${Date.now()}`)
   .then(res => res.text())
   .then(csv => {
     const rows = parseCSV(csv);
-    publicationsData = rows.sort((a, b) => b.Year - a.Year); // newest first
+    publicationsData = rows.sort((a, b) => b.Year - a.Year);
+    filteredPubs = publicationsData;
+    populateYearFilter();
     renderPubPage(1);
   })
   .catch(err => console.error('Failed to load publications:', err));
+
+function populateYearFilter() {
+  const years = [...new Set(publicationsData.map(p => p.Year))].sort((a, b) => b - a);
+  const select = document.getElementById('pub-year-filter');
+  years.forEach(year => {
+    const opt = document.createElement('option');
+    opt.value = year;
+    opt.textContent = year;
+    select.appendChild(opt);
+  });
+}
+
+function applyFilters() {
+  const searchTerm = document.getElementById('pub-search').value.toLowerCase();
+  const yearTerm = document.getElementById('pub-year-filter').value;
+
+  filteredPubs = publicationsData.filter(pub => {
+    const matchesSearch = !searchTerm ||
+      pub.Title.toLowerCase().includes(searchTerm) ||
+      pub.Authors.toLowerCase().includes(searchTerm);
+    const matchesYear = !yearTerm || pub.Year === yearTerm;
+    return matchesSearch && matchesYear;
+  });
+
+  renderPubPage(1);
+}
+
+document.getElementById('pub-search').addEventListener('input', applyFilters);
+document.getElementById('pub-year-filter').addEventListener('change', applyFilters);
+document.getElementById('pub-clear-filters').addEventListener('click', () => {
+  document.getElementById('pub-search').value = '';
+  document.getElementById('pub-year-filter').value = '';
+  applyFilters();
+});
 
 function renderPubPage(page) {
   currentPubPage = page;
@@ -291,7 +328,13 @@ function renderPubPage(page) {
   list.innerHTML = '';
 
   const start = (page - 1) * PUBS_PER_PAGE;
-  const pageItems = publicationsData.slice(start, start + PUBS_PER_PAGE);
+  const pageItems = filteredPubs.slice(start, start + PUBS_PER_PAGE);
+
+  if (pageItems.length === 0) {
+    list.innerHTML = '<p class="pub-empty">No publications match your filters.</p>';
+    document.getElementById('pub-pagination').innerHTML = '';
+    return;
+  }
 
   pageItems.forEach(pub => {
     const item = document.createElement('div');
@@ -311,7 +354,7 @@ function renderPubPage(page) {
 }
 
 function renderPagination() {
-  const totalPages = Math.ceil(publicationsData.length / PUBS_PER_PAGE);
+  const totalPages = Math.ceil(filteredPubs.length / PUBS_PER_PAGE);
   const nav = document.getElementById('pub-pagination');
   nav.innerHTML = '';
 
@@ -338,4 +381,103 @@ function renderPagination() {
   nextBtn.disabled = currentPubPage === totalPages;
   nextBtn.addEventListener('click', () => renderPubPage(currentPubPage + 1));
   nav.appendChild(nextBtn);
+}
+
+// ── BEYOND SCIENCE ──
+const BEYOND_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSKibTTUSsWczy9nZ7RmtSXFHMb6h1AjQOgM8gTgs603dxCLNP7Azsd-AZ5pddK5H0TYegCeGqBNPxK/pub?gid=1371581164&single=true&output=csv';
+const BEYOND_PER_PAGE = 12;
+let beyondData = [];
+let currentBeyondPage = 1;
+
+fetch(`${BEYOND_CSV_URL}&t=${Date.now()}`)
+  .then(res => res.text())
+  .then(csv => {
+    beyondData = parseCSV(csv);
+    renderBeyondPage(1);
+  })
+  .catch(err => console.error('Failed to load beyond science photos:', err));
+
+function renderBeyondPage(page) {
+  currentBeyondPage = page;
+  const grid = document.getElementById('beyond-grid');
+  grid.innerHTML = '';
+
+  const start = (page - 1) * BEYOND_PER_PAGE;
+  const pageItems = beyondData.slice(start, start + BEYOND_PER_PAGE);
+
+  pageItems.forEach(photo => {
+    const card = document.createElement('div');
+    card.className = 'beyond-card';
+    card.innerHTML = `
+      <img src="images/beyond/${photo.Filename}" alt="${photo.Caption}" loading="lazy" />
+      <div class="beyond-caption">${photo.Caption}</div>
+    `;
+    grid.appendChild(card);
+  });
+
+  renderBeyondPagination();
+}
+
+function renderBeyondPagination() {
+  const totalPages = Math.ceil(beyondData.length / BEYOND_PER_PAGE);
+  const nav = document.getElementById('beyond-pagination');
+  nav.innerHTML = '';
+
+  if (totalPages <= 1) return;
+
+  const prevBtn = document.createElement('button');
+  prevBtn.className = 'pub-page-nav';
+  prevBtn.textContent = '← Prev';
+  prevBtn.disabled = currentBeyondPage === 1;
+  prevBtn.addEventListener('click', () => renderBeyondPage(currentBeyondPage - 1));
+  nav.appendChild(prevBtn);
+
+  for (let i = 1; i <= totalPages; i++) {
+    const btn = document.createElement('button');
+    btn.className = 'pub-page-btn' + (i === currentBeyondPage ? ' active' : '');
+    btn.textContent = i;
+    btn.addEventListener('click', () => renderBeyondPage(i));
+    nav.appendChild(btn);
+  }
+
+  const nextBtn = document.createElement('button');
+  nextBtn.className = 'pub-page-nav';
+  nextBtn.textContent = 'Next →';
+  nextBtn.disabled = currentBeyondPage === totalPages;
+  nextBtn.addEventListener('click', () => renderBeyondPage(currentBeyondPage + 1));
+  nav.appendChild(nextBtn);
+}
+
+// ── ALUMNI ──
+const ALUMNI_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSKibTTUSsWczy9nZ7RmtSXFHMb6h1AjQOgM8gTgs603dxCLNP7Azsd-AZ5pddK5H0TYegCeGqBNPxK/pub?gid=95158975&single=true&output=csv';
+fetch(`${ALUMNI_CSV_URL}&t=${Date.now()}`)
+  .then(res => res.text())
+  .then(csv => {
+    const rows = parseCSV(csv);
+    renderAlumni(rows);
+  })
+  .catch(err => console.error('Failed to load alumni:', err));
+
+function renderAlumni(alumni) {
+  const track = document.getElementById('alumni-track');
+  track.innerHTML = '';
+
+  // duplicate cards for seamless infinite scroll
+  const allCards = [...alumni, ...alumni];
+
+  allCards.forEach(person => {
+    const card = document.createElement('div');
+    card.className = 'alumni-card';
+    card.innerHTML = `
+      <div class="alumni-photo">
+        <img src="images/alumni/${person.Photo}" alt="${person.Name}" loading="lazy" />
+      </div>
+      <div class="alumni-info">
+        <p class="alumni-name">${person.Name}</p>
+        <p class="alumni-role">${person.CurrentRole}</p>
+        <p class="alumni-quote">"${person.Quote}"</p>
+      </div>
+    `;
+    track.appendChild(card);
+  });
 }
