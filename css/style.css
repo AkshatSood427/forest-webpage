@@ -988,90 +988,6 @@ body {
   align-items: center;
 }
 
-/* ── BEYOND SCIENCE ── */
-#beyond {
-  position: relative;
-  height: 100vh;
-  display: flex;
-  align-items: flex-start;
-  padding-top: 12vh;
-  z-index: 10;
-  overflow: hidden;
-}
-
-.beyond-container {
-  width: 85%;
-  margin: 0 auto;
-  padding: 2rem;
-}
-
-.beyond-grid {
-  margin-top: 1rem;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-auto-rows: 140px;
-  gap: 0.6rem;
-}
-
-.beyond-card {
-  position: relative;
-  border-radius: 8px;
-  overflow: hidden;
-  cursor: default;
-}
-
-.beyond-card:nth-child(3n+1) {
-  grid-row: span 2;
-}
-
-.beyond-card img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-.beyond-caption {
-  position: absolute;
-  inset: auto 0 0 0;
-  padding: 0.5rem 0.7rem;
-  background: linear-gradient(to top, rgba(5, 10, 5, 0.85), transparent);
-  color: var(--color-text);
-  font-size: 0.72rem;
-  font-weight: 300;
-  opacity: 0;
-  transition: opacity 0.25s ease;
-}
-
-.beyond-card:hover .beyond-caption {
-  opacity: 1;
-}
-
-.beyond-pagination {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 0.75rem;
-  margin-top: 1.5rem;
-}
-
-.beyond-label {
-  font-size: 2rem;
-  font-weight: 500;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  color: var(--color-accent);
-  margin-bottom: 0rem;
-  margin-top: -3rem;
-}
-
-.beyond-intro {
-  font-size: 1rem;
-  font-weight: 300;
-  color: #b8c9b8;
-  line-height: 1.8;
-}
-
 /* ── ALUMNI STRIP ── */
 .alumni-section {
   margin-top: 2rem;
@@ -1163,4 +1079,424 @@ body {
   color: var(--color-muted);
   line-height: 1.5;
   font-style: italic;
+}
+
+/* ── BEYOND SCIENCE ── */
+#beyond {
+  padding-top: 3rem;
+  position: relative;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  z-index: 10;
+  overflow: hidden;
+}
+
+.beyond-film-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+}
+
+.beyond-left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 2rem;
+  padding-left: 15rem;
+  height: 100%;
+}
+
+.beyond-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2rem 2rem 2rem 0;
+  height: 100%;
+  gap: 1.5rem;
+}
+
+.beyond-right-header {
+  flex-shrink: 0;
+}
+
+.beyond-label {
+  padding-left: 10rem;
+  font-size: 2rem;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: 0.25rem;
+}
+
+.beyond-intro {
+  padding-left: 10rem;
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: #f1f1f1;
+  line-height: 1.6;
+}
+
+.cam-body {
+  background: #2a1f1a;
+  border-radius: 12px 12px 16px 16px;
+  padding: 1rem;
+  width: clamp(240px, 28vw, 550px);
+  border: 2px solid #3a2f2a;
+  box-shadow: inset 0 2px 8px rgba(0,0,0,0.5), 0 8px 24px rgba(0,0,0,0.4);
+}
+
+.cam-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 0.6rem;
+}
+
+.cam-grip {
+  background: #1a1210;
+  border-radius: 6px 6px 0 0;
+  width: 55px;
+  height: 24px;
+  border: 1px solid #3a2f2a;
+}
+
+.cam-hump {
+  background: #2a1f1a;
+  border-radius: 4px;
+  padding: 2px 8px;
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.cam-hump-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #1a1210;
+  border: 1px solid #4a3f3a;
+}
+
+.cam-viewfinder {
+  width: 26px;
+  height: 18px;
+  background: #111;
+  border-radius: 3px;
+  border: 2px solid #4a3f3a;
+}
+
+.cam-controls-right {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: flex-end;
+}
+
+.ctrl-btn {
+  background: #1a1210;
+  border: 1px solid #4a3f3a;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 7px;
+  color: #8a7a6a;
+}
+
+.cam-screen-wrap {
+  background: #111;
+  border-radius: 6px;
+  padding: 5px;
+  border: 2px solid #4a3f3a;
+}
+
+.cam-screen {
+  width: 100%;
+  aspect-ratio: 4/3;
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+  background: #000;
+}
+
+.cam-screen img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.screen-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.corner {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-color: #c8e6a0;
+  border-style: solid;
+  opacity: 0.7;
+}
+
+.corner.tl { top: 6px; left: 6px; border-width: 2px 0 0 2px; }
+.corner.tr { top: 6px; right: 6px; border-width: 2px 2px 0 0; }
+.corner.bl { bottom: 30px; left: 6px; border-width: 0 0 2px 2px; }
+.corner.br { bottom: 30px; right: 6px; border-width: 0 2px 2px 0; }
+
+.screen-caption-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0,0,0,0.65);
+  padding: 6px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 6;
+}
+
+.screen-caption-text {
+  font-size: 11px;
+  color: #c8e6a0;
+  letter-spacing: 0.08em;
+  font-family: monospace;
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.screen-photo-num {
+  font-size: 11px;
+  color: #8ab870;
+  font-family: monospace;
+  letter-spacing: 0.05em;
+  flex-shrink: 0;
+  margin-left: 6px;
+}
+
+.cam-flash {
+  position: absolute;
+  inset: 0;
+  background: #fff;
+  opacity: 0;
+  pointer-events: none;
+  border-radius: 4px;
+  z-index: 10;
+}
+
+.cam-flash.go {
+  animation: camFlash 0.25s ease-out forwards;
+}
+
+@keyframes camFlash {
+  0% { opacity: 0; }
+  20% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+.cam-bottom-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 0.6rem;
+}
+
+.menu-btns {
+  display: flex;
+  gap: 4px;
+}
+
+.menu-btn {
+  background: #1a1210;
+  border: 1px solid #4a3f3a;
+  border-radius: 10px;
+  padding: 2px 5px;
+  font-size: 7px;
+  color: #8a7a6a;
+  letter-spacing: 0.05em;
+}
+
+.cam-dial {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #3a2f2a;
+  border: 2px solid #4a3f3a;
+  position: relative;
+}
+
+.cam-dial::after {
+  content: '';
+  position: absolute;
+  top: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 4px;
+  background: #8a7a6a;
+  border-radius: 50%;
+}
+
+.cam-set {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: #1a1210;
+  border: 2px solid #4a3f3a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 7px;
+  color: #8a7a6a;
+}
+
+/* ── CAPTURE BUTTON ── */
+.capture-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.capture-ring {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  border: 2px solid #c8e6a0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.1s, background 0.2s;
+  background: rgba(200, 230, 160, 0.08);
+}
+
+.capture-ring:hover {
+  background: rgba(200, 230, 160, 0.18);
+  transform: scale(1.05);
+}
+
+.capture-ring:active {
+  transform: scale(0.93);
+}
+
+.capture-ring svg {
+  width: 24px;
+  height: 24px;
+}
+
+.capture-label {
+  font-size: 12px;
+  color: #8ab870;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.capture-label::before,
+.capture-label::after {
+  content: '';
+  width: 14px;
+  height: 1px;
+  background: #4a6a4a;
+}
+
+/* ── FILM STRIP ── */
+.film-strip-wrap {
+  display: flex;
+  align-items: stretch;
+}
+
+.film-sprocket {
+  width: 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  background: #111;
+  padding: 4px 0;
+}
+
+.sprocket-hole {
+  width: 10px;
+  height: 7px;
+  border-radius: 1px;
+  background: #2a1f1a;
+  border: 1px solid #3a2f2a;
+}
+
+.film-grid {
+  background: #111;
+  padding: 5px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(4, minmax(10px,1fr));
+  gap: 4px;
+  width: clamp(250px, 32vw, 600px);
+}
+
+.film-slot {
+  border-radius: 2px;
+  overflow: hidden;
+  background: #1a1210;
+  border: 1px solid #2a2a1a;
+  position: relative;
+}
+
+.film-slot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.slot-num {
+  position: absolute;
+  bottom: 2px;
+  right: 3px;
+  font-size: 7px;
+  color: rgba(200, 230, 160, 0.45);
+  font-family: monospace;
+}
+
+.film-slot.new-slot {
+  animation: slotAppear 0.4s cubic-bezier(0.34, 1.4, 0.64, 1) forwards;
+}
+
+@keyframes slotAppear {
+  from { opacity: 0; transform: scale(0.4) translateY(-15px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.cam-screen img.lift-out {
+  animation: liftOut 0.28s ease-in forwards;
+}
+
+@keyframes liftOut {
+  from { opacity: 1; transform: scale(1); }
+  to { opacity: 0; transform: scale(1.12) translateY(-8px); }
+}
+
+.cam-screen img.fade-in {
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }

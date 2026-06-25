@@ -385,67 +385,95 @@ function renderPagination() {
 
 // ── BEYOND SCIENCE ──
 const BEYOND_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSKibTTUSsWczy9nZ7RmtSXFHMb6h1AjQOgM8gTgs603dxCLNP7Azsd-AZ5pddK5H0TYegCeGqBNPxK/pub?gid=1371581164&single=true&output=csv';
-const BEYOND_PER_PAGE = 12;
-let beyondData = [];
-let currentBeyondPage = 1;
+const STRIP_COUNT = 12;
+const TOTAL_PHOTOS = 20;
+let beyondPhotos = [];
+let screenIdx = 0;
+let camBusy = false;
 
 fetch(`${BEYOND_CSV_URL}&t=${Date.now()}`)
   .then(res => res.text())
   .then(csv => {
-    beyondData = parseCSV(csv);
-    renderBeyondPage(1);
+    const rows = parseCSV(csv);
+    beyondPhotos = rows.map(r => ({
+      src: `images/beyond/${r.Filename}`,
+      caption: r.Caption
+    }));
+    buildSprockets('sprocket-left');
+    buildSprockets('sprocket-right');
+    renderFilmStrip(false);
+    updateCameraScreen(false);
   })
-  .catch(err => console.error('Failed to load beyond science photos:', err));
+  .catch(err => console.error('Failed to load beyond photos:', err));
 
-function renderBeyondPage(page) {
-  currentBeyondPage = page;
-  const grid = document.getElementById('beyond-grid');
-  grid.innerHTML = '';
-
-  const start = (page - 1) * BEYOND_PER_PAGE;
-  const pageItems = beyondData.slice(start, start + BEYOND_PER_PAGE);
-
-  pageItems.forEach(photo => {
-    const card = document.createElement('div');
-    card.className = 'beyond-card';
-    card.innerHTML = `
-      <img src="images/beyond/${photo.Filename}" alt="${photo.Caption}" loading="lazy" />
-      <div class="beyond-caption">${photo.Caption}</div>
-    `;
-    grid.appendChild(card);
-  });
-
-  renderBeyondPagination();
+function buildSprockets(id) {
+  const el = document.getElementById(id);
+  el.innerHTML = '';
+  for (let i = 0; i < 8; i++) {
+    const h = document.createElement('div');
+    h.className = 'sprocket-hole';
+    el.appendChild(h);
+  }
 }
 
-function renderBeyondPagination() {
-  const totalPages = Math.ceil(beyondData.length / BEYOND_PER_PAGE);
-  const nav = document.getElementById('beyond-pagination');
-  nav.innerHTML = '';
+function renderFilmStrip(animateFirst) {
+  const grid = document.getElementById('film-grid');
+  grid.innerHTML = '';
 
-  if (totalPages <= 1) return;
-
-  const prevBtn = document.createElement('button');
-  prevBtn.className = 'pub-page-nav';
-  prevBtn.textContent = '← Prev';
-  prevBtn.disabled = currentBeyondPage === 1;
-  prevBtn.addEventListener('click', () => renderBeyondPage(currentBeyondPage - 1));
-  nav.appendChild(prevBtn);
-
-  for (let i = 1; i <= totalPages; i++) {
-    const btn = document.createElement('button');
-    btn.className = 'pub-page-btn' + (i === currentBeyondPage ? ' active' : '');
-    btn.textContent = i;
-    btn.addEventListener('click', () => renderBeyondPage(i));
-    nav.appendChild(btn);
+  for (let i = 0; i < STRIP_COUNT; i++) {
+    // strip shows the PREVIOUS photos behind the current screen photo
+    // slot 0 = most recently captured (screenIdx - 1)
+    // slot 14 = oldest visible (screenIdx - STRIP_COUNT)
+    const idx = ((screenIdx - 1 - i) % TOTAL_PHOTOS + TOTAL_PHOTOS) % TOTAL_PHOTOS;
+    const slot = document.createElement('div');
+    slot.className = 'film-slot' + (i === 0 && animateFirst ? ' new-slot' : '');
+    const img = document.createElement('img');
+    img.src = beyondPhotos[idx].src;
+    img.alt = beyondPhotos[idx].caption;
+    img.loading = 'lazy';
+    const num = document.createElement('div');
+    num.className = 'slot-num';
+    num.textContent = String(idx + 1).padStart(2, '0');
+    slot.appendChild(img);
+    slot.appendChild(num);
+    grid.appendChild(slot);
   }
+}
 
-  const nextBtn = document.createElement('button');
-  nextBtn.className = 'pub-page-nav';
-  nextBtn.textContent = 'Next →';
-  nextBtn.disabled = currentBeyondPage === totalPages;
-  nextBtn.addEventListener('click', () => renderBeyondPage(currentBeyondPage + 1));
-  nav.appendChild(nextBtn);
+function updateCameraScreen(animate) {
+  const p = beyondPhotos[screenIdx];
+  const img = document.getElementById('screen-img');
+  if (animate) {
+    img.classList.add('fade-in');
+    setTimeout(() => img.classList.remove('fade-in'), 300);
+  }
+  img.src = p.src;
+  document.getElementById('screen-cap').textContent = p.caption;
+  document.getElementById('screen-num').textContent =
+    String(screenIdx + 1).padStart(2, '0') + '/' + beyondPhotos.length;
+}
+
+function capturePhoto() {
+  if (camBusy || beyondPhotos.length === 0) return;
+  camBusy = true;
+
+  const flash = document.getElementById('cam-flash');
+  const img = document.getElementById('screen-img');
+
+  flash.classList.add('go');
+  img.classList.add('lift-out');
+
+  setTimeout(() => {
+    flash.classList.remove('go');
+    img.classList.remove('lift-out');
+
+    // advance screen by 1
+    screenIdx = (screenIdx + 1) % TOTAL_PHOTOS;
+
+    renderFilmStrip(true);
+    updateCameraScreen(true);
+    camBusy = false;
+  }, 320);
 }
 
 // ── ALUMNI ──

@@ -161,15 +161,73 @@
 
     <!-- ===== BEYOND SCIENCE ===== -->
     <section id="beyond">
-      <div class="beyond-container">
-        <p class="beyond-label">Beyond Science</p>
-        <p class="beyond-intro">Beyond science, our lab thrives on collaboration, friendship, and shared experiences. From celebrations and field trips to team activities, these moments strengthen connections and make our research journey more enjoyable.</p>
 
-        <div class="beyond-grid" id="beyond-grid"></div>
-
-        <div class="beyond-pagination" id="beyond-pagination"></div>
+      <!-- LEFT: Camera -->
+      <div class="beyond-left">
+        <div class="cam-body">
+          <div class="cam-top">
+            <div class="cam-grip"></div>
+            <div class="cam-hump">
+              <div class="cam-hump-dot"></div>
+              <div class="cam-viewfinder"></div>
+              <div class="cam-hump-dot"></div>
+            </div>
+            <div class="cam-controls-right">
+              <div class="ctrl-btn">Q</div>
+              <div class="ctrl-btn">▶</div>
+            </div>
+          </div>
+          <div class="cam-screen-wrap">
+            <div class="cam-screen" id="cam-screen">
+              <img id="screen-img" src="" alt="current photo" />
+              <div class="screen-overlay">
+                <div class="corner tl"></div>
+                <div class="corner tr"></div>
+                <div class="corner bl"></div>
+                <div class="corner br"></div>
+                <div class="screen-caption-bar">
+                  <span class="screen-caption-text" id="screen-cap">—</span>
+                  <span class="screen-photo-num" id="screen-num">01/20</span>
+                </div>
+              </div>
+              <div class="cam-flash" id="cam-flash"></div>
+            </div>
+          </div>
+          <div class="cam-bottom-row">
+            <div class="menu-btns">
+              <div class="menu-btn">MENU</div>
+              <div class="menu-btn">INFO</div>
+            </div>
+            <div class="cam-dial"></div>
+            <div class="cam-set">SET</div>
+          </div>
+        </div>
+        <div class="capture-area">
+          <div class="capture-ring" id="capture-ring" onclick="capturePhoto()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#c8e6a0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/>
+              <circle cx="12" cy="13" r="4"/>
+            </svg>
+          </div>
+          <div class="capture-label">Capture</div>
+        </div>
       </div>
-      <div class="scroll-hint about-scroll-hint">↓ scroll</div>
+
+      <!-- RIGHT: Title + Film Strip -->
+      <div class="beyond-right">
+        <div class="beyond-right-header">
+          <p class="beyond-label">Beyond Science</p>
+          <p class="beyond-intro">Beyond science, our lab thrives on collaboration, friendship, and shared experiences. From celebrations and field trips to team activities, these moments strengthen connections and make our research journey more enjoyable.</p>
+        </div>
+        <div class="beyond-film-wrap">
+          <div class="film-strip-wrap">
+            <div class="film-sprocket" id="sprocket-left"></div>
+            <div class="film-grid" id="film-grid"></div>
+            <div class="film-sprocket" id="sprocket-right"></div>
+          </div>
+        </div>
+      </div>
+
     </section>
 
     <!-- ===== CONTACT ===== -->
