@@ -23,14 +23,20 @@
     <div class="scroll-hint">↓ scroll</div>
   </section>
 
-  <!-- ===== NAVBAR (revealed on scroll) ===== -->
   <nav id="navbar">
-    <span class="nav-logo">FOREST</span>
-    <ul class="nav-links">
-      <li><a href="#about">About</a></li>
-      <li><a href="#research">Research</a></li>
-      <li><a href="#team">Team</a></li>
-      <li><a href="#contact">Contact</a></li>
+    <span class="nav-logo">FROEST LAB</span>
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#about" onclick="closeMenu()">About</a></li>
+      <li><a href="#research" onclick="closeMenu()">What We Do</a></li>
+      <li><a href="#team" onclick="closeMenu()">Team</a></li>
+      <li><a href="#publications" onclick="closeMenu()">Publications</a></li>
+      <li><a href="#beyond" onclick="closeMenu()">Beyond Science</a></li>
+      <li><a href="#contact" onclick="closeMenu()">Contact</a></li>
     </ul>
   </nav>
 
@@ -164,6 +170,10 @@
 
       <!-- LEFT: Camera -->
       <div class="beyond-left">
+        <div class="beyond-mobile-header">
+          <p class="beyond-label">Beyond Science</p>
+          <p class="beyond-intro">Beyond science, our lab thrives on collaboration, friendship, and shared experiences. From celebrations and field trips to team activities, these moments strengthen connections and make our research journey more enjoyable.</p>
+        </div>
         <div class="cam-body">
           <div class="cam-top">
             <div class="cam-grip"></div>
@@ -210,6 +220,7 @@
             </svg>
           </div>
           <div class="capture-label">Capture</div>
+          <p class="mobile-tap-hint">tap to cycle through photos</p>
         </div>
       </div>
 

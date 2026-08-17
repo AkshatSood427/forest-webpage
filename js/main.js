@@ -272,7 +272,7 @@ document.querySelector('.team-grid').addEventListener('wheel', (e) => {
 
 // ── PUBLICATIONS ──
 const PUBLICATIONS_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSKibTTUSsWczy9nZ7RmtSXFHMb6h1AjQOgM8gTgs603dxCLNP7Azsd-AZ5pddK5H0TYegCeGqBNPxK/pub?gid=56861099&single=true&output=csv';
-const PUBS_PER_PAGE = 5;
+const PUBS_PER_PAGE = window.innerWidth <= 768 ? 4 : 5;
 let publicationsData = [];
 let filteredPubs = [];
 let currentPubPage = 1;
@@ -508,4 +508,70 @@ function renderAlumni(alumni) {
     `;
     track.appendChild(card);
   });
+}
+
+// ── HAMBURGER MENU ──
+const hamburger = document.getElementById('nav-hamburger');
+const navLinks = document.getElementById('nav-links');
+
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('open');
+  navLinks.classList.toggle('open');
+});
+
+function closeMenu() {
+  hamburger.classList.remove('open');
+  navLinks.classList.remove('open');
+}
+
+// ── TOUCH SWIPE FOR MOBILE ──
+let touchStartY = 0;
+let touchEndY = 0;
+
+window.addEventListener('touchstart', (e) => {
+  touchStartY = e.changedTouches[0].screenY;
+}, { passive: true });
+
+window.addEventListener('touchend', (e) => {
+  touchEndY = e.changedTouches[0].screenY;
+  handleSwipe();
+}, { passive: true });
+
+function handleSwipe() {
+  if (isScrolling) return;
+  if (memberOverlay.classList.contains('active')) return;
+  
+  const pubOverlay = document.getElementById('pub-filter-overlay');
+  if (pubOverlay && pubOverlay.classList.contains('active')) return;
+
+  const diff = touchStartY - touchEndY;
+  if (Math.abs(diff) < 50) return;
+
+  let currentIndex = 0;
+  let minDistance = Infinity;
+  sections.forEach((s, i) => {
+    const dist = Math.abs(s.getBoundingClientRect().top);
+    if (dist < minDistance) {
+      minDistance = dist;
+      currentIndex = i;
+    }
+  });
+
+  let target = currentIndex;
+  if (diff > 0) target = Math.min(currentIndex + 1, sections.length - 1);
+  if (diff < 0) target = Math.max(currentIndex - 1, 0);
+
+  if (target !== currentIndex) {
+    isScrolling = true;
+    sections[target].scrollIntoView({ behavior: 'smooth' });
+    setTimeout(() => {
+      isScrolling = false;
+      if (target === 0) {
+        navbar.classList.remove('visible');
+        coverBg.style.transform = `scale(1.05) translateY(0px)`;
+      } else {
+        navbar.classList.add('visible');
+      }
+    }, 900);
+  }
 }
