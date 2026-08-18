@@ -135,27 +135,92 @@ function parseCSV(text) {
     return obj;
   });
 }
+const MEMBERS_PER_PAGE_MOBILE = 6;
+let currentMemberPage = 1;
+let allMemberRows = [];
+
 function renderTeamGrid(members) {
+  allMemberRows = members;
   const grid = document.querySelector('.team-grid');
   grid.innerHTML = '';
 
-  members.forEach(member => {
-    const card = document.createElement('div');
-    card.className = 'member-card';
-    card.innerHTML = `
-      <div class="member-photo"><img src="images/team/${member.Photo}" alt="${member.Name}" /></div>
-      <div class="member-info">
-        <p class="member-name">${member.Name}</p>
-        <p class="member-role">${member.Role}</p>
-      </div>
-    `;
+  const isMobile = window.innerWidth <= 768;
+
+  if (isMobile) {
+    renderMobileTeamPage(1);
+  } else {
+    // desktop — show all
+    members.forEach((member, i) => {
+      const card = createMemberCard(member);
+      grid.appendChild(card);
+      card.addEventListener('click', () => openMemberOverlay(i + 1));
+    });
+  }
+}
+
+function createMemberCard(member) {
+  const card = document.createElement('div');
+  card.className = 'member-card';
+  card.innerHTML = `
+    <div class="member-photo"><img src="images/team/${member.Photo}" alt="${member.Name}" /></div>
+    <div class="member-info">
+      <p class="member-name">${member.Name}</p>
+      <p class="member-role">${member.Role}</p>
+    </div>
+  `;
+  return card;
+}
+
+function renderMobileTeamPage(page) {
+  currentMemberPage = page;
+  const grid = document.querySelector('.team-grid');
+  grid.innerHTML = '';
+
+  const start = (page - 1) * MEMBERS_PER_PAGE_MOBILE;
+  const pageItems = allMemberRows.slice(start, start + MEMBERS_PER_PAGE_MOBILE);
+
+  pageItems.forEach((member, i) => {
+    const globalIndex = start + i;
+    const card = createMemberCard(member);
+    card.addEventListener('click', () => openMemberOverlay(globalIndex + 1));
     grid.appendChild(card);
   });
 
-  // attach click handlers
-  grid.querySelectorAll('.member-card').forEach((card, i) => {
-    card.addEventListener('click', () => openMemberOverlay(i + 1)); // +1 because index 0 is scientist
-  });
+  // render pagination
+  let paginationEl = document.getElementById('team-pagination-mobile');
+  if (!paginationEl) {
+    paginationEl = document.createElement('div');
+    paginationEl.id = 'team-pagination-mobile';
+    paginationEl.className = 'team-pagination-mobile';
+    grid.parentElement.appendChild(paginationEl);
+  }
+
+  const totalPages = Math.ceil(allMemberRows.length / MEMBERS_PER_PAGE_MOBILE);
+  paginationEl.innerHTML = '';
+
+  if (totalPages <= 1) return;
+
+  const prevBtn = document.createElement('button');
+  prevBtn.className = 'pub-page-nav';
+  prevBtn.textContent = '← Prev';
+  prevBtn.disabled = currentMemberPage === 1;
+  prevBtn.addEventListener('click', () => renderMobileTeamPage(currentMemberPage - 1));
+  paginationEl.appendChild(prevBtn);
+
+  for (let i = 1; i <= totalPages; i++) {
+    const btn = document.createElement('button');
+    btn.className = 'pub-page-btn' + (i === currentMemberPage ? ' active' : '');
+    btn.textContent = i;
+    btn.addEventListener('click', () => renderMobileTeamPage(i));
+    paginationEl.appendChild(btn);
+  }
+
+  const nextBtn = document.createElement('button');
+  nextBtn.className = 'pub-page-nav';
+  nextBtn.textContent = 'Next →';
+  nextBtn.disabled = currentMemberPage === totalPages;
+  nextBtn.addEventListener('click', () => renderMobileTeamPage(currentMemberPage + 1));
+  paginationEl.appendChild(nextBtn);
 }
 
 // fetch team data
@@ -218,7 +283,7 @@ const sections = Array.from(document.querySelectorAll('#cover, #about, #research
 let isScrolling = false;
 
 window.addEventListener('wheel', (e) => {
-  if (e.target.closest('.team-grid') || e.target.closest('.member-overlay-card') || e.target.closest('.pub-pagination') || e.target.closest('.beyond-pagination')) {
+  if (e.target.closest('.team-grid') || e.target.closest('.member-overlay-card') || e.target.closest('.pub-pagination') || e.target.closest('.beyond-pagination') || e.target.closest('.pub-filter-card') || e.target.closest('.team-pagination-mobile')){
   return;
 }
 
@@ -575,3 +640,24 @@ function handleSwipe() {
     }, 900);
   }
 }
+
+// ── MOBILE INTERNAL SCROLL FIX ──
+const internalScrollContainers = [
+  '.team-container',
+  '.about-container',
+  '.research-container',
+  '.pub-container',
+  '.contact-container',
+  '.team-pagination-mobile'
+];
+
+internalScrollContainers.forEach(selector => {
+  const el = document.querySelector(selector);
+  if (!el) return;
+  el.addEventListener('touchstart', (e) => {
+    e.stopPropagation();
+  }, { passive: true });
+  el.addEventListener('touchend', (e) => {
+    e.stopPropagation();
+  }, { passive: true });
+});
