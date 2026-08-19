@@ -278,6 +278,18 @@ const cover = document.getElementById('cover');
 const navbar = document.getElementById('navbar');
 const coverBg = document.querySelector('.cover-bg');
 
+// ── MOBILE NAVBAR SCROLL VISIBILITY ──
+if (window.innerWidth <= 768) {
+  window.addEventListener('scroll', () => {
+    const coverHeight = document.getElementById('cover').offsetHeight;
+    if (window.scrollY > coverHeight * 0.75) {
+      navbar.classList.add('visible');
+    } else {
+      navbar.classList.remove('visible');
+    }
+  }, { passive: true });
+}
+
 // ── SMOOTH SNAP SCROLL ──
 const sections = Array.from(document.querySelectorAll('#cover, #about, #research, #team, #publications, #beyond, #contact'));
 let isScrolling = false;
