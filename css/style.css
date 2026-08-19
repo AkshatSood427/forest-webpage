@@ -1551,7 +1551,7 @@ body {
 @media (max-width: 768px) {
 
   :root {
-    --navbar-height: 12vw;
+    --navbar-height: calc(12vw + env(safe-area-inset-top));
   }
 
   html {
@@ -1579,8 +1579,9 @@ body {
   /* ── NAVBAR ── */
   #navbar {
     padding: 0 1rem;
-    max-height: 12vw;
-    height: 12vw;
+    padding-top: env(safe-area-inset-top);
+    height: calc(12vw + env(safe-area-inset-top));
+    max-height: calc(12vw + env(safe-area-inset-top));
   }
 
   .nav-logo {
