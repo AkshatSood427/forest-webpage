@@ -1550,6 +1550,11 @@ body {
 
 @media (max-width: 768px) {
 
+  #cover, #about, #research, #team, #publications, #beyond, #contact {
+    height: 100dvh;
+    touch-action: pan-y;
+  }
+
   :root {
     --navbar-height: 12vw;
   }
