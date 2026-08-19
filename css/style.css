@@ -1552,7 +1552,7 @@ body {
 
   #cover, #about, #research, #team, #publications, #beyond, #contact {
     height: 100dvh;
-    touch-action: pan-y;
+    touch-action: auto;
   }
 
   :root {
@@ -1561,7 +1561,9 @@ body {
 
   html, body {
     overflow-x: hidden;
+    overflow-y: scroll;
     max-width: 100vw;
+    height: auto;
   }
 
   .scroll-hint, .about-scroll-hint {

@@ -283,6 +283,7 @@ const sections = Array.from(document.querySelectorAll('#cover, #about, #research
 let isScrolling = false;
 
 window.addEventListener('wheel', (e) => {
+  if (window.innerWidth <= 768) return; // disable wheel snap on mobile
   if (e.target.closest('.team-grid') || e.target.closest('.member-overlay-card') || e.target.closest('.pub-pagination') || e.target.closest('.beyond-pagination') || e.target.closest('.pub-filter-card') || e.target.closest('.team-pagination-mobile')){
   return;
 }
@@ -603,41 +604,35 @@ window.addEventListener('touchend', (e) => {
 }, { passive: true });
 
 function handleSwipe() {
+  if (window.innerWidth > 768) return; // desktop handles its own snap
   if (isScrolling) return;
   if (memberOverlay.classList.contains('active')) return;
-  
-  const pubOverlay = document.getElementById('pub-filter-overlay');
-  if (pubOverlay && pubOverlay.classList.contains('active')) return;
 
   const diff = touchStartY - touchEndY;
   if (Math.abs(diff) < 50) return;
 
-  let currentIndex = 0;
-  let minDistance = Infinity;
-  sections.forEach((s, i) => {
-    const dist = Math.abs(s.getBoundingClientRect().top);
-    if (dist < minDistance) {
-      minDistance = dist;
-      currentIndex = i;
-    }
-  });
+  const coverRect = document.getElementById('cover').getBoundingClientRect();
+  const isCoverVisible = Math.abs(coverRect.top) < window.innerHeight / 2;
 
-  let target = currentIndex;
-  if (diff > 0) target = Math.min(currentIndex + 1, sections.length - 1);
-  if (diff < 0) target = Math.max(currentIndex - 1, 0);
-
-  if (target !== currentIndex) {
+  if (isCoverVisible && diff > 0) {
+    // swipe up from cover → snap to about
     isScrolling = true;
-    sections[target].scrollIntoView({ behavior: 'smooth' });
+    sections[1].scrollIntoView({ behavior: 'smooth' });
     setTimeout(() => {
       isScrolling = false;
-      if (target === 0) {
-        navbar.classList.remove('visible');
-        coverBg.style.transform = `scale(1.05) translateY(0px)`;
-      } else {
-        navbar.classList.add('visible');
-      }
+      navbar.classList.add('visible');
     }, 900);
+  } else if (isCoverVisible === false) {
+    const aboutRect = document.getElementById('about').getBoundingClientRect();
+    if (Math.abs(aboutRect.top) < window.innerHeight / 2 && diff < 0) {
+      // swipe down from about → snap back to cover
+      isScrolling = true;
+      sections[0].scrollIntoView({ behavior: 'smooth' });
+      setTimeout(() => {
+        isScrolling = false;
+        navbar.classList.remove('visible');
+      }, 900);
+    }
   }
 }
 
