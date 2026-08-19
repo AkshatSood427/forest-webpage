@@ -1692,8 +1692,8 @@ body {
     margin-bottom: 0.5rem;
   }
 
-  .about-btn {
-    margin-left: 0;
+  #about .about-btn {
+    display: none;
   }
 
   .about-container .slideshow-panel {
