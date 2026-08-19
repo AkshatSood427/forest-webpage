@@ -1550,21 +1550,25 @@ body {
 
 @media (max-width: 768px) {
 
-  #cover, #about, #research, #team, #publications, #beyond, #contact {
-    height: 100dvh;
-    touch-action: auto;
+  #about, #research, #team, #publications, #beyond, #contact {
+    height: auto;
+    min-height: 100dvh;
   }
 
   :root {
     --navbar-height: 12vw;
   }
 
-  html, body {
-    overflow-x: hidden;
-    overflow-y: scroll;
-    max-width: 100vw;
+  html {
     height: auto;
+    overflow-y: auto;
+    scroll-behavior: smooth;
   }
+
+body {
+  height: auto;
+  overflow-y: auto;
+}
 
   .scroll-hint, .about-scroll-hint {
     display: none;
@@ -1659,9 +1663,7 @@ body {
   }
 
   #cover {
-    width: 100vw;
-    height: 100vh;
-    overflow: hidden;
+    height: 100dvh;
     position: relative;
   }
 
