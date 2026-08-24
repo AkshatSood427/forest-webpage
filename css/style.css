@@ -1641,6 +1641,26 @@ body {
     max-width: 100vw;
   }
 
+  * {
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .alumni-track-wrapper {
+    overflow: hidden;
+    max-width: 100%;
+  }
+
+  .alumni-track {
+    width: max-content;
+    max-width: none;
+  }
+
+  .alumni-section {
+    overflow: hidden;
+    max-width: 100%;
+  }
+
   /* ── ALL SECTIONS ── */
   #about, #research, #team, #publications, #beyond, #contact {
     height: auto;
