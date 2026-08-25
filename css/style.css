@@ -1555,7 +1555,12 @@ body {
 }
 
 @media (max-width: 1536px) and (min-width: 769px) {
-  html, body {
+  html{
+    overflow-x: hidden;
+  }
+
+  body {
+    zoom: 0.8;
     overflow-x: hidden;
   }
 
