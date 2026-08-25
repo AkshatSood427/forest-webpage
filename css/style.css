@@ -1628,7 +1628,7 @@ body {
 
   .pub-container {
     width: 90%;
-    margin-top: -3rem;
+    margin-top: -5rem;
   }
 
   .beyond-left {
@@ -1665,10 +1665,6 @@ body {
     margin-left: 0;
     margin-top: 0;
     padding: 1rem;
-  }
-
-  .pub-container {
-    margin-top: -4rem;
   }
 }
 
