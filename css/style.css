@@ -19,6 +19,7 @@
 html {
   scroll-behavior: auto;
   height: 100%;
+  overflow-x: hidden;
 }
 
 body {
@@ -1652,8 +1653,7 @@ body {
   }
 
   .alumni-track {
-    width: max-content;
-    max-width: none;
+    animation: scrollAlumni 20s linear infinite;
   }
 
   .alumni-section {
