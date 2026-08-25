@@ -203,7 +203,8 @@ body {
   position: relative;
   overflow: hidden;
   z-index: 10;
-  height: 100vh;
+  min-height: 100vh;
+  height: auto;
 }
 
 .section-bg {
@@ -327,10 +328,11 @@ body {
 /* ── RESEARCH ── */
 #research {
   position: relative;
-  height: 100vh;
   display: flex;
   align-items: center;
   z-index: 10;
+  min-height: 100vh;
+  height: auto;
 }
 
 .research-container {
@@ -401,7 +403,8 @@ body {
 /* ── TEAM ── */
 #team {
   position: relative;
-  height: 100vh;
+  min-height: 100vh;
+  height: auto;
   display: flex;
   align-items: center;
   z-index: 10;
@@ -698,7 +701,8 @@ body {
 /* ── CONTACT ── */
 #contact {
   position: relative;
-  height: 100vh;
+  min-height: 100vh;
+  height: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -791,11 +795,12 @@ body {
 /* ── PUBLICATIONS ── */
 #publications {
   position: relative;
-  height: 100vh;
   display: flex;
   align-items: flex-start;
   padding-top: 18vh;
   z-index: 10;
+  min-height: 100vh;
+  height: auto;
 }
 
 .pub-container {
@@ -1090,11 +1095,12 @@ body {
 #beyond {
   padding-top: 3rem;
   position: relative;
-  height: 100vh;
   display: grid;
   grid-template-columns: 1fr 1.6fr;
   z-index: 10;
   overflow: hidden;
+  min-height: 100vh;
+  height: auto;
 }
 
 .beyond-film-wrap {
@@ -1548,7 +1554,7 @@ body {
   transform: translateY(-7px) rotate(-45deg);
 }
 
-@media (max-width: 1440px) and (min-width: 769px) {
+@media (max-width: 1536px) and (min-width: 769px) {
   html, body {
     overflow-x: hidden;
   }
