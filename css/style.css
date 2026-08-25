@@ -1549,74 +1549,20 @@ body {
 }
 
 @media (max-width: 1194px) and (min-width: 769px) {
+  body {
+    zoom: 0.8;
+  }
+
+  #cover {
+    height: 125vh;
+  }
+
+  #about, #research, #team, #publications, #beyond, #contact {
+    height: 125vh;
+  }
 
   html, body {
     overflow-x: hidden;
-  }
-
-  .contact-container {
-    width: 100%;
-  }
-
-  .beyond-left {
-    padding-left: 3rem;
-  }
-
-  .beyond-label {
-    padding-left: 0;
-  }
-
-  .beyond-intro {
-    padding-left: 0;
-  }
-
-  .research-container {
-    margin-left: auto;
-    margin-right: auto;
-    width: 95%;
-    margin-top: 0;
-  }
-
-  .team-header {
-    margin-left: 0;
-    margin-top: 0;
-  }
-
-  .about-label {
-    margin-left: 0;
-    margin-top: 1rem;
-  }
-
-  .about-body {
-    margin-left: 0;
-  }
-
-  .about-btn {
-    margin-left: 0;
-  }
-
-  .about-container .slideshow-panel {
-    margin-left: 1rem;
-    margin-top: 1rem;
-    width: 100%;
-  }
-
-  .group-text {
-    margin-left: 0;
-    margin-top: 0;
-  }
-
-  .team-container {
-    width: 100%;
-  }
-
-  .team-grid {
-    width: 95%;
-  }
-
-  .pub-container {
-    width: 90%;
-    margin-top: -5rem;
   }
 }
 
