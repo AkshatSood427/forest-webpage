@@ -1548,7 +1548,7 @@ body {
   transform: translateY(-7px) rotate(-45deg);
 }
 
-@media (max-width: 1194px) and (min-width: 769px) {
+@media (max-width: 1440px) and (min-width: 769px) {
   html, body {
     overflow-x: hidden;
   }
