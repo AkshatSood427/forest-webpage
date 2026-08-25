@@ -1564,6 +1564,14 @@ body {
     overflow-x: hidden;
   }
 
+  #cover {
+    height: 125vh;
+  }
+
+  #about, #research, #team, #publications, #beyond, #contact {
+    min-height: 125vh;
+  }
+
   .about-label {
     margin-top: 0;
     margin-left: 0;
