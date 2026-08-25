@@ -1549,20 +1549,77 @@ body {
 }
 
 @media (max-width: 1194px) and (min-width: 769px) {
-  body {
-    zoom: 0.8;
-  }
-
-  #cover {
-    height: 125vh;
-  }
-
-  #about, #research, #team, #publications, #beyond, #contact {
-    height: 125vh;
-  }
-
   html, body {
     overflow-x: hidden;
+  }
+
+  .about-label {
+    margin-top: 0;
+    margin-left: 0;
+  }
+
+  .about-body {
+    margin-left: 0;
+  }
+
+  .about-btn {
+    margin-left: 0;
+  }
+
+  .about-container {
+    padding: 3rem 2rem;
+  }
+
+  .about-container .slideshow-panel {
+    width: 100%;
+    margin-left: 0;
+    margin-top: 0;
+  }
+
+  .slideshow-panel {
+    width: 100%;
+  }
+
+  .research-container {
+    width: 95%;
+    margin: 0 auto;
+    margin-top: 0;
+  }
+
+  .research-container .slideshow-panel {
+    width: 100%;
+    margin-left: 0;
+    margin-top: 0;
+  }
+
+  .contact-container {
+    width: 90%;
+  }
+
+  .pub-container {
+    width: 90%;
+    margin-top: -3rem;
+  }
+
+  .beyond-left {
+    padding-left: 2rem;
+  }
+
+  .beyond-label {
+    padding-left: 0;
+  }
+
+  .beyond-intro {
+    padding-left: 0;
+  }
+
+  .team-header {
+    margin-left: 0;
+    margin-top: 0;
+  }
+
+  .team-container {
+    width: 100%;
   }
 }
 
