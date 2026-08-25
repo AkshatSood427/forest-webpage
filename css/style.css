@@ -1572,6 +1572,12 @@ body {
     min-height: 125vh;
   }
 
+  #about {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
   .about-label {
     margin-top: 0;
     margin-left: 0;
@@ -1586,8 +1592,11 @@ body {
   }
 
   .about-container {
-    padding: 5rem 2rem 2rem;
-    align-items: center;
+    max-width: 90%;
+    padding: 8rem 3rem 2rem;
+    gap: 2rem;
+    grid-template-columns: 1.2fr 1fr;
+    margin: auto;
   }
 
   .about-container .slideshow-panel {
@@ -1635,12 +1644,26 @@ body {
   }
 
   .team-header {
-    margin-left: 0;
-    margin-top: 0;
+    margin-left: 22rem;
+    margin-top: 2rem;
   }
 
   .team-container {
     width: 100%;
+  }
+
+  .team-left {
+    padding-left: 1rem;
+  }
+
+  .group-card {
+    height: auto;
+  }
+
+  .group-text {
+    margin-left: 0;
+    margin-top: 0;
+    padding: 1rem;
   }
 }
 
