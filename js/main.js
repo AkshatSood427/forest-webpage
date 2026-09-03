@@ -13,6 +13,10 @@ function shuffle(arr) {
 
 shuffle(imagePool);
 
+function imgPath(path) {
+  return path.toLowerCase();
+}
+
 // ── SLIDESHOW ──
 function createSlideshow(containerEl, startIndex) {
   let current = startIndex % imagePool.length;
