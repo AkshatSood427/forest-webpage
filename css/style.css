@@ -48,7 +48,7 @@ body {
 .cover-bg {
   position: absolute;
   inset: 0;
-  background-image: url('../images/cover.JPG');
+  background-image: url('../images/cover.jpg');
   background-size: cover;
   background-position: center;
   transform: scale(1.0);
