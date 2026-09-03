@@ -1,7 +1,6 @@
 // ── IMAGE POOL ──
 const totalImages = 86;
-const imagePool = Array.from({ length: totalImages }, (_, i) => `images/gallery/${i + 1}.JPG`);
-
+const imagePool = Array.from({ length: totalImages }, (_, i) => `images/gallery/${i + 1}.jpg`);
 // shuffle array
 function shuffle(arr) {
   for (let i = arr.length - 1; i > 0; i--) {
